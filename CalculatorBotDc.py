@@ -1,52 +1,66 @@
 import discord
 from discord.ext import commands
 import math
-import os
 from keep_alive import keep_alive
+import os
 
-bot = commands.Bot(command_prefix='%')
+client = commands.Bot(command_prefix='%')
 
-@bot.event 
+@client.event
 async def on_ready():
-  print('You are now logged in as {0.user}'.format(bot))
+  print("Welcome Aboard!")
+  print(client.user.name)
 
-@bot.event
-async def on_message(message):
-  if message.content.startswith('%author'):
-    await message.channel.send('Raishu')
+@client.command()
+async def author(ctx, ):
+  embed = discord.Embed(title="Proudly made by Raishu! ", color=5763719)
+  await ctx.send(embed=embed)
+  
+@client.command()
+async def commands(ctx, ):
+  embed = discord.Embed(title='Here is the list of commands: \n%add \n%sub \n%mul \n%div \n%mod \n%sqrt \n%exp \n%author \n%commands \nInsert first and second number respectively. ex. %add 1 2', color=5763719)
+  await ctx.send(embed=embed)
 
-  if message.content.startswith('%commands'):
-    await message.channel.send('Here''s the list of commands: \n%mathadd \n%mathsub \n%mathmul \n%mathdiv \n%mathmod \n%mathsqrt \n%mathrandom \n%author \n%commands \nInsert first and second number respectively. ex. %mathadd 1 2')
-
-@bot.command()
+@client.command()
 async def add(ctx, x: float, y: float):
-  res = x + y
-  await ctx.send(res)
+  embed = discord.Embed(title="Answer: ", description=x+y, color=5763719)
+  embed.set_footer(text="Created by Raishu")
+  await ctx.send(embed=embed)
 
-@bot.command()
+@client.command()
 async def sub(ctx, x: float, y: float):
-  res = (x - y)
-  await ctx.send(res)
+  embed = discord.Embed(title="Answer: ", description=x-y, color=5763719)
+  embed.set_footer(text="Created by Raishu")
+  await ctx.send(embed=embed)
 
-@bot.command()
+@client.command()
 async def mul(ctx, x: float, y: float):
-  res = (x * y)
-  await ctx.send(res)
+  embed = discord.Embed(title="Answer: ", description=x*y, color=5763719)
+  embed.set_footer(text="Created by Raishu")
+  await ctx.send(embed=embed)
 
-@bot.command()
+@client.command()
 async def div(ctx, x: float, y: float):
-  res = (x / y)
-  await ctx.send(res)
+  embed = discord.Embed(title="Answer: ", description=x/y, color=5763719)
+  embed.set_footer(text="Created by Raishu")
+  await ctx.send(embed=embed)
 
-@bot.command()
+@client.command()
 async def mod(ctx, x: float, y: float):
-  res = (x % y)
-  await ctx.send(res)
+  embed = discord.Embed(title="Answer: ", description=x%y, color=5763719)
+  embed.set_footer(text="Created by Raishu")
+  await ctx.send(embed=embed)
 
-@bot.command()
+@client.command()
 async def sqrt(ctx, x: float):
-  res = (math.sqrt(x))
-  await ctx.send(res)
+  embed = discord.Embed(title="Answer: ", description=math.sqrt(x), color=5763719)
+  embed.set_footer(text="Created by Raishu")
+  await ctx.send(embed=embed)
 
+@client.command()
+async def exp(ctx, x: int, y: int):
+  embed = discord.Embed(title="Answer: ", description=x**y, color=5763719)
+  embed.set_footer(text="Created by Raishu")
+  await ctx.send(embed=embed)
 keep_alive()
-bot.run(os.getenv('')) #insert getenv key
+client.run(os.getenv('147178'))
